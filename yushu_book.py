@@ -1,5 +1,12 @@
+# @Time    : 9/22/2021 10:47 AM
+# @Author  : arthur
+# @Email   : arthurwanggang@outlook.com
+# @File    : yushu_book.py
+# @Software: PyCharm
+
 
 from httpRequest import HttpRequest
+from flask import current_app
 
 
 class YushuBook:
@@ -14,9 +21,12 @@ class YushuBook:
         return result
 
     @classmethod
-    def search_by_keyword(cls, keyword, count=15, start=0):
-        url = YushuBook.keyword_url.format(keyword, count, start)
+    def search_by_keyword(cls, keyword, page=1):
+        url = YushuBook.keyword_url.format(keyword, current_app.config['PER_PAGE'], cls.calculate_start(page))
         # dict
         result = HttpRequest.get(url)
         return result
 
+    @staticmethod
+    def calculate_start(page):
+        return (page - 1) * current_app.config['PER_PAGE']
