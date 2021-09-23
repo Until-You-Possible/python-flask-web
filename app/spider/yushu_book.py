@@ -5,13 +5,13 @@
 # @Software: PyCharm
 
 
-from httpRequest import HttpRequest
+from app.libs.httpRequest import HttpRequest
 from flask import current_app
 
 
 class YushuBook:
     isbn_url = "http://t.talelin.com/v2/book/isbn/{}"
-    keyword_url = "http://t.talelin.com/v2/book/search/?q={}&count={}&start={}"
+    keyword_url = "http://t.talelin.com/v2/book/search?q={}&count={}&start={}"
 
     @classmethod
     def search_by_isbn(cls, isbn):

@@ -5,11 +5,10 @@
 # @Software: PyCharm
 
 
-from flask import jsonify, Blueprint, request
+from flask import jsonify, request
 
-import app.forms.book
-from helper import is_isbn_or_key
-from yushu_book import YushuBook
+from app.libs.helper import is_isbn_or_key
+from app.spider.yushu_book import YushuBook
 from . import web
 from app.forms.book import SearchForm
 

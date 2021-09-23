@@ -1,7 +1,5 @@
-# @Time    : 9/22/2021 2:11 PM
+# @Time    : 9/23/2021 10:38 AM
 # @Author  : arthur
 # @Email   : arthurwanggang@outlook.com
-# @File    : setting.py
+# @File    : __init__.py.py
 # @Software: PyCharm
-
-PER_PAGE = 15
