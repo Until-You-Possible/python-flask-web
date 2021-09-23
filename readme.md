@@ -1,4 +1,9 @@
 ###### 使用python和flask，mysql实现一个网站
-###### 顺便整理py的基本知识点
-###### 基本的结构知识点会整理在这里
-###### 细节的知识点会以md文件的形式包括的代码文件中，也方便回顾
+使用到的基本链接：
+Flash: https://flask.net.cn/
+
+python版本3.x, 系统macOS， mysql数据库
+
+python文档： https://docs.python.org/3.6/tutorial/index.html
+
+Sqlalchemy: https://www.sqlalchemy.org/
