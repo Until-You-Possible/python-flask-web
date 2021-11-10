@@ -9,13 +9,16 @@ print(es.info())
 count = 0
 start_time = time.time()
 actions = []
-with open('/Users/wanggang/Documents/kba/kba.json', 'r', encoding='utf8') as fp:
+source_path = "/Users/wanggang/Documents/kba/kba.json"
+index_name = "kba"
+index_type = "_doc"
+with open(source_path, 'r', encoding='utf8') as fp:
     json_data = json.load(fp, strict=False)
     for item in json_data:
         count += 1
         action = {
-            "_index": "test",
-            "_type": "_doc",
+            "_index": index_name,
+            "_type": index_type,
             "source": item
         }
         actions.append(action)
