@@ -1,32 +1,93 @@
 import json
+import time
 
-import jsonlines
+from elasticsearch import helpers
+
 from elasticsearch import Elasticsearch
 
-url = "https://elasticsearch.ingress.forme-dev.forme.shoot.canary.k8s-hana.ondemand.com"
-username = "admin"
-password = "SAPForMeAdmin88&"
+es_url = "http://127.0.0.1:9200"
+es = Elasticsearch(es_url)
+print(es.info)
 
-es = Elasticsearch('192.168.1.1:9200')
-# 链接es成功
-print(es.info())
-
-mapping = {
-    'properties': {
-        'title': {
-            'type': 'text',
-            'analyzer': 'standard'
-        }
-    }
+configurations = {
+    "index_name": "index_name",
+    "index_type": "index_type",
+    "request_body": {}
 }
 
-# es.indices.create(index='news', ignore=400)
-# es.indices.put_mapping(index='news', doc_type='politics', include_type_name=True, body=mapping)
+source_path = "/Users/wanggang/Documents/kba/kba.json"
 
-# with open('/Users/wanggang/Desktop/index.json', 'r', encoding='utf8') as fp:
-#     json_data = json.load(fp)
-#     for item in json_data:
-#         print("item", item)
-#         es.index(index="news",  doc_type='politics', document=item)
-#     print('这是文件中的json数据：', json_data)
-#     print('这是读取到文件数据的数据类型：', type(json_data))
+
+def create_index():
+    es.indices.create(index=configurations.get("index_name"), body=configurations.get("request_body"))
+    print("create a new index")
+
+
+# create_index()
+
+
+def check_json_count():
+    count = 0
+    start_time = time.time()
+    with open(source_path, "r", encoding="UTF-8") as fp:
+        json_data = json.load(fp, strict=False)
+        for item in json_data:
+            count += 1
+    end_time = time.time()
+    t = end_time - start_time
+    des = "读取这些数据{}条，共花费{}秒".format(count, t)
+    return des
+
+
+print(check_json_count())
+
+
+def read_json_file():
+    with open(source_path, "r", encoding="UTF-8") as fp:
+        json_data = json.load(fp, strict=False)
+        actions = []
+        count = 0
+        for item in json_data:
+            count += 1
+            action = {
+                "_index": configurations.get("index_name"),
+                "type": configurations.get("index_type"),
+                "_source": item
+            }
+            actions.append(action)
+            if len(actions) == 1000:
+                helpers.bulk(es, actions)
+                actions = []
+    helpers.bulk(es, actions)
+
+
+# read_json_file()
+
+
+def check_json_count_block():
+    count = 0
+    block_size = 1024 * 8
+    with open(source_path, "r", encoding="UTF-8") as fp:
+        while True:
+            chunk = fp.read(block_size)
+            if not chunk:
+                break
+            count += chunk.count("SAP")
+    return count
+
+
+print("test number", check_json_count_block())
+
+
+
+
+
+
+
+
+
+
+
+
+
+

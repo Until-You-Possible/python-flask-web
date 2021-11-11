@@ -31,18 +31,3 @@ with open(source_path, 'r', encoding='utf8') as fp:
     t = end_time - start_time
     print("已经被导入数据", count, "耗时", t)
 
-# def timer(func):
-#     def wrapper(*args, **kwargs):
-#         start = time.time()
-#         res = func(*args, **kwargs)
-#         print('共耗时约 {:.2f} 秒'.format(time.time() - start))
-#         return res
-#
-#     return wrapper
-#
-#
-# @timer
-# def create_data():
-#     """ 写入数据 """
-#     for line in range(100):
-#         es.index(index='s2', doc_type='doc', body={'title': line})
