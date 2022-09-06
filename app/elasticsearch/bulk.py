@@ -48,6 +48,7 @@ def read_json_file():
         actions = []
         count = 0
         for item in json_data:
+
             count += 1
             action = {
                 "_index": configurations.get("index_name"),
