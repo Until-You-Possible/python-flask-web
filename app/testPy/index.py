@@ -5,7 +5,7 @@ from sklearn2pmml.pipeline import PMMLPipeline
 from sklearn2pmml import sklearn2pmml
 
 
-iris_df = pandas.read_csv("./data/Iris.csv")
+iris_df = pandas.read_csv("../ML/data/Iris.csv")
 
 iris_X = iris_df[iris_df.columns.difference(["Species"])]
 iris_y = iris_df["Species"]
