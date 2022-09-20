@@ -11,10 +11,10 @@ import warnings
 
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
-ratings = pd.read_csv("https://s3-us-west-2.amazonaws.com/recommender-tutorial/ratings.csv")
+ratings = pd.read_csv("./data/ratings.csv")
 ratings.head()
 
-movies = pd.read_csv("https://s3-us-west-2.amazonaws.com/recommender-tutorial/movies.csv")
+movies = pd.read_csv("./data/movies.csv")
 movies.head()
 
 n_ratings = len(ratings)
