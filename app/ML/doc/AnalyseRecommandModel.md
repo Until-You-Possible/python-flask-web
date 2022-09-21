@@ -6,7 +6,7 @@
 
 2: pandas
  参考文档 https://www.pypandas.cn/docs/getting_started/basics.html#head-%E4%B8%8E-tail
-3: skkearn，基本的机器学习的框架
+3: sklearn，基本的机器学习的框架
 4：seaborn, 这是一个基于matplotlib进行高级封装的可视化库，相比之下，绘制图表更为集成化、绘图风格具有更高的定制性
 相关参考文档： https://pypi.org/project/seaborn/
 https://zhuanlan.zhihu.com/p/342945532
@@ -32,7 +32,11 @@ movies
 users
 同理 (unique 去重，从大到小返回)
 
+1: user_freq 这里
+根据userId纬度将ratings数据分为多分(取决于有userId有多少不同值)表格，然后统计数量(count),
+reset_index 保留groupby的 参数，方便查看理解数据。
+column这里重新命名table
+取出前五条
 
-
-
+1：mean_rating
  
